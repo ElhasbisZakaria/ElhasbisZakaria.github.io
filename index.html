@@ -36,6 +36,13 @@
                         'gradient-xy': 'gradient-xy 5s ease infinite',
                         'float': 'float 3s ease-in-out infinite',
                         'typing': 'typing 3.5s steps(40, end), blink .75s step-end infinite',
+                        'fade-in': 'fadeIn 1s ease-in forwards',
+                        'slide-up': 'slideUp 0.8s ease forwards',
+                        'zoom-in': 'zoomIn 0.8s ease forwards',
+                        'bounce-in': 'bounceIn 1s ease forwards',
+                        'flip': 'flip 1.5s ease-in-out',
+                        'rotate-scale': 'rotateScale 1.5s ease-in-out',
+                        'pulse-shadow': 'pulseShadow 2s ease infinite',
                     },
                     keyframes: {
                         'gradient-y': {
@@ -61,6 +68,41 @@
                         'blink': {
                             'from, to': { borderColor: 'transparent' },
                             '50%': { borderColor: 'white' },
+                        },
+                        'fadeIn': {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        'slideUp': {
+                            '0%': { transform: 'translateY(50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        'zoomIn': {
+                            '0%': { transform: 'scale(0.5)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        'bounceIn': {
+                            '0%': { transform: 'scale(0.3)', opacity: '0' },
+                            '40%': { transform: 'scale(1.1)', opacity: '1' },
+                            '60%': { transform: 'scale(0.9)', opacity: '1' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        'flip': {
+                            '0%': { transform: 'perspective(400px) rotateY(0)' },
+                            '40%': { transform: 'perspective(400px) rotateY(170deg)' },
+                            '50%': { transform: 'perspective(400px) rotateY(190deg)' },
+                            '80%': { transform: 'perspective(400px) rotateY(360deg)' },
+                            '100%': { transform: 'perspective(400px) rotateY(360deg)' },
+                        },
+                        'rotateScale': {
+                            '0%': { transform: 'rotate(0deg) scale(1)' },
+                            '50%': { transform: 'rotate(180deg) scale(1.2)' },
+                            '100%': { transform: 'rotate(360deg) scale(1)' },
+                        },
+                        'pulseShadow': {
+                            '0%': { boxShadow: '0 0 0 0 rgba(30, 64, 175, 0.6)' },
+                            '70%': { boxShadow: '0 0 0 15px rgba(30, 64, 175, 0)' },
+                            '100%': { boxShadow: '0 0 0 0 rgba(30, 64, 175, 0)' },
                         },
                     },
                 }
@@ -148,39 +190,164 @@
         
         /* Project cards hover effect */
         .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
         
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
         }
         
         /* Skills hover effect */
         .skill-card {
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
         
         .skill-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
         
         /* Certificate hover effect */
         .certificate-card {
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
         }
         
         .certificate-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Animations for sections */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Staggered animations for cards */
+        .stagger-animation > * {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .stagger-animation.animated > *:nth-child(1) { transition-delay: 0.1s; }
+        .stagger-animation.animated > *:nth-child(2) { transition-delay: 0.2s; }
+        .stagger-animation.animated > *:nth-child(3) { transition-delay: 0.3s; }
+        .stagger-animation.animated > *:nth-child(4) { transition-delay: 0.4s; }
+        .stagger-animation.animated > *:nth-child(5) { transition-delay: 0.5s; }
+        .stagger-animation.animated > *:nth-child(6) { transition-delay: 0.6s; }
+        .stagger-animation.animated > *:nth-child(7) { transition-delay: 0.7s; }
+        .stagger-animation.animated > *:nth-child(8) { transition-delay: 0.8s; }
+        .stagger-animation.animated > *:nth-child(9) { transition-delay: 0.9s; }
+        .stagger-animation.animated > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 3D hover effects */
+        .hover-3d {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+        
+        .hover-3d:hover {
+            transform: perspective(1000px) rotateX(2deg) rotateY(5deg) scale3d(1.05, 1.05, 1.05);
+        }
+        
+        /* Shiny button effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            transition: transform 0.7s;
+        }
+        
+        .btn-shine:hover::after {
+            transform: rotate(30deg) translate(100%, -100%);
+        }
+        
+        /* Glow effect for text */
+        .text-glow {
+            text-shadow: 0 0 10px rgba(30, 64, 175, 0.5);
+            transition: text-shadow 0.3s ease;
+        }
+        
+        .text-glow:hover {
+            text-shadow: 0 0 20px rgba(30, 64, 175, 0.8);
+        }
+        
+        /* Improved text gradient */
+        .text-gradient {
+            background-size: 200% 200%;
+            animation: moveGradient 4s ease infinite;
+        }
+        
+        @keyframes moveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Glowing border */
+        .glow-border {
+            position: relative;
+        }
+        
+        .glow-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(45deg, #1E40AF, #4169E1, #ADD8E6, #1E40AF);
+            background-size: 200% 200%;
+            animation: animatedgradient 3s ease infinite;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        
+        @keyframes animatedgradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
     </style>
 </head>
 <body class="font-sans bg-light dark:bg-dark text-dark dark:text-light">
     <!-- Color Scheme Toggle -->
     <div class="fixed top-5 right-5 z-50">
-        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none">
+        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none animate-pulse-shadow">
             <i class="fa-solid fa-sun text-yellow-500 dark:hidden"></i>
             <i class="fa-solid fa-moon text-blue-300 hidden dark:block"></i>
         </button>
@@ -190,18 +357,42 @@
     <nav class="fixed w-full z-40 bg-white/90 dark:bg-dark/90 backdrop-blur-sm shadow-md">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
-                <a href="#accueil" class="text-2xl font-bold text-primary dark:text-babyBlue">ZE.</a>
+                <a href="#accueil" class="text-2xl font-bold text-primary dark:text-babyBlue">Elhasbis Zakaria</a>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#accueil" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Accueil</a>
-                    <a href="#apropos" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">À propos</a>
-                    <a href="#formation" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Formation</a>
-                    <a href="#competences" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Compétences</a>
-                    <a href="#projets" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Projets</a>
-                    <a href="#experience" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Expérience</a>
-                    <a href="#certifications" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Certifications</a>
-                    <a href="#contact" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Contact</a>
+                    <a href="#accueil" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
+                        Accueil
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#apropos" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
+                        À propos
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#formation" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
+                        Formation
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#competences" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
+                        Compétences
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#projets" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
+                        Projets
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#experience" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
+                        Expérience
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#certifications" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
+                        Certifications
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -230,31 +421,31 @@
     <section id="accueil" class="min-h-screen bg-gradient-to-br from-babyBlue to-white dark:from-darkBlue dark:to-primary flex items-center pt-20">
         <div class="container mx-auto px-4 py-16">
             <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-1/2 mb-10 md:mb-0">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-fade-in">
                     <div class="animation-container overflow-hidden mb-6">
-                        <h2 class="text-xl md:text-2xl font-light mb-4">Bienvenue sur mon portfolio</h2>
-                        <h1 class="text-3xl md:text-5xl font-bold mb-4">Bonjour, je suis<br>
+                        <h2 class="text-xl md:text-2xl font-light mb-4 animate-slide-up">Bienvenue sur mon portfolio</h2>
+                        <h1 class="text-3xl md:text-5xl font-bold mb-4 animate-slide-up" style="animation-delay: 0.2s;">Bonjour, je suis<br>
                             <span class="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary dark:from-babyBlue dark:to-lightBlue typing-animation">
                                 Zakaria ELHASBIS
                             </span>
                         </h1>
-                        <p class="text-lg md:text-xl mb-8">Futur Ingénieur en génie mécatronique et systèmes intelligents, passionné par l'innovation technologique.</p>
+                        <p class="text-lg md:text-xl mb-8 animate-slide-up" style="animation-delay: 0.4s;">Futur Ingénieur en génie mécatronique et systèmes intelligents, passionné par l'innovation technologique.</p>
                         
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#contact" class="btn-primary bg-primary hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg transition-all transform hover:scale-105 focus:outline-none flex items-center justify-center">
+                        <div class="flex flex-col sm:flex-row gap-4 animate-slide-up" style="animation-delay: 0.6s;">
+                            <a href="#contact" class="btn-primary btn-shine bg-primary hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg transition-all transform hover:scale-105 focus:outline-none flex items-center justify-center">
                                 <i class="fa-solid fa-envelope mr-2"></i> Me contacter
                             </a>
-                            <a href="#projets" class="btn-secondary bg-white dark:bg-transparent border-2 border-primary dark:border-lightBlue text-primary dark:text-lightBlue font-medium py-3 px-6 rounded-lg transition-all transform hover:scale-105 focus:outline-none flex items-center justify-center">
+                            <a href="#projets" class="btn-secondary btn-shine bg-white dark:bg-transparent border-2 border-primary dark:border-lightBlue text-primary dark:text-lightBlue font-medium py-3 px-6 rounded-lg transition-all transform hover:scale-105 focus:outline-none flex items-center justify-center">
                                 <i class="fa-solid fa-briefcase mr-2"></i> Voir mes projets
                             </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="md:w-1/2 flex justify-center">
+                <div class="md:w-1/2 flex justify-center animate-zoom-in" style="animation-delay: 0.3s;">
                     <div class="relative">
                         <!-- Profile Image -->
-                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg animate-float">
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg animate-float hover-3d">
                             <img src="ma-photo.jpg" alt="Zakaria ELHASBIS" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x400?text=Zakaria+ELHASBIS'; this.onerror=null;">
                         </div>
                     </div>
@@ -271,12 +462,12 @@
     </section>
 
     <!-- About Section -->
-    <section id="apropos" class="py-20 bg-white dark:bg-dark">
+    <section id="apropos" class="py-20 bg-white dark:bg-dark animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-primary dark:text-babyBlue">Qui suis-je</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gradient-to-br from-lightBlue/10 to-babyBlue/5 dark:from-darkBlue/30 dark:to-primary/20 p-8 rounded-xl shadow-lg">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-animation">
+                <div class="bg-gradient-to-br from-lightBlue/10 to-babyBlue/5 dark:from-darkBlue/30 dark:to-primary/20 p-8 rounded-xl shadow-lg hover-3d">
                     <h3 class="text-2xl font-bold mb-4 text-darkBlue dark:text-lightBlue">À propos de moi</h3>
                     <p class="text-gray-700 dark:text-gray-300 mb-4">
                         En tant qu'étudiant en cycle d'ingénieur en mécatronique et systèmes intelligents à l'ENSA Berrechid, j'ai développé diverses compétences techniques et managériales.
@@ -286,25 +477,25 @@
                     </p>
                 </div>
                 
-                <div class="bg-gradient-to-br from-cherryRed/10 to-offWhite dark:from-cherryRed/30 dark:to-dark/50 p-8 rounded-xl shadow-lg">
+                <div class="bg-gradient-to-br from-cherryRed/10 to-offWhite dark:from-cherryRed/30 dark:to-dark/50 p-8 rounded-xl shadow-lg hover-3d">
                     <h3 class="text-2xl font-bold mb-4 text-cherryRed dark:text-offWhite">Langues</h3>
                     <div class="grid grid-cols-3 gap-4">
                         <div class="text-center">
-                            <div class="w-16 h-16 mx-auto bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mb-2">
+                            <div class="w-16 h-16 mx-auto bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mb-2 transform transition-transform hover:scale-110">
                                 <i class="fa-solid fa-language text-2xl text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <p class="font-medium text-gray-700 dark:text-gray-300">Arabe</p>
                             <p class="text-sm text-gray-600 dark:text-gray-400">Natif</p>
                         </div>
                         <div class="text-center">
-                            <div class="w-16 h-16 mx-auto bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mb-2">
+                            <div class="w-16 h-16 mx-auto bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mb-2 transform transition-transform hover:scale-110">
                                 <i class="fa-solid fa-language text-2xl text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <p class="font-medium text-gray-700 dark:text-gray-300">Français</p>
                             <p class="text-sm text-gray-600 dark:text-gray-400">Courant</p>
                         </div>
                         <div class="text-center">
-                            <div class="w-16 h-16 mx-auto bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mb-2">
+                            <div class="w-16 h-16 mx-auto bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mb-2 transform transition-transform hover:scale-110">
                                 <i class="fa-solid fa-language text-2xl text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <p class="font-medium text-gray-700 dark:text-gray-300">Anglais</p>
@@ -314,40 +505,40 @@
                     
                     <h3 class="text-xl font-bold mb-4 mt-8 text-cherryRed dark:text-offWhite">Soft Skills</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">Adaptabilité</span>
-                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">Communication</span>
-                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">Travail en équipe</span>
-                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">Responsabilité</span>
-                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">Autodidacte</span>
-                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">Gestion du temps</span>
-                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">Leadership</span>
+                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Adaptabilité</span>
+                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Communication</span>
+                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Travail en équipe</span>
+                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Responsabilité</span>
+                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Autodidacte</span>
+                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Gestion du temps</span>
+                        <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Leadership</span>
                     </div>
                 </div>
                 
-                <div class="bg-gradient-to-br from-success/10 to-info/5 dark:from-success/30 dark:to-info/20 p-8 rounded-xl shadow-lg">
+                <div class="bg-gradient-to-br from-success/10 to-info/5 dark:from-success/30 dark:to-info/20 p-8 rounded-xl shadow-lg hover-3d">
                     <h3 class="text-2xl font-bold mb-4 text-success dark:text-info">Centres d'intérêts</h3>
                     
                     <div class="grid grid-cols-2 gap-4">
                         <div class="text-center">
-                            <div class="w-16 h-16 mx-auto bg-success/20 dark:bg-success/30 rounded-full flex items-center justify-center mb-2">
+                            <div class="w-16 h-16 mx-auto bg-success/20 dark:bg-success/30 rounded-full flex items-center justify-center mb-2 transform transition-transform hover:scale-110">
                                 <i class="fa-solid fa-hands-helping text-2xl text-success dark:text-info"></i>
                             </div>
                             <p class="font-medium text-gray-700 dark:text-gray-300">Bénévolat</p>
                         </div>
                         <div class="text-center">
-                            <div class="w-16 h-16 mx-auto bg-success/20 dark:bg-success/30 rounded-full flex items-center justify-center mb-2">
+                            <div class="w-16 h-16 mx-auto bg-success/20 dark:bg-success/30 rounded-full flex items-center justify-center mb-2 transform transition-transform hover:scale-110">
                                 <i class="fa-solid fa-book-reader text-2xl text-success dark:text-info"></i>
                             </div>
                             <p class="font-medium text-gray-700 dark:text-gray-300">Lecture</p>
                         </div>
                         <div class="text-center">
-                            <div class="w-16 h-16 mx-auto bg-success/20 dark:bg-success/30 rounded-full flex items-center justify-center mb-2">
+                            <div class="w-16 h-16 mx-auto bg-success/20 dark:bg-success/30 rounded-full flex items-center justify-center mb-2 transform transition-transform hover:scale-110">
                                 <i class="fa-solid fa-camera text-2xl text-success dark:text-info"></i>
                             </div>
                             <p class="font-medium text-gray-700 dark:text-gray-300">Photographie</p>
                         </div>
                         <div class="text-center">
-                            <div class="w-16 h-16 mx-auto bg-success/20 dark:bg-success/30 rounded-full flex items-center justify-center mb-2">
+                            <div class="w-16 h-16 mx-auto bg-success/20 dark:bg-success/30 rounded-full flex items-center justify-center mb-2 transform transition-transform hover:scale-110">
                                 <i class="fa-solid fa-swimmer text-2xl text-success dark:text-info"></i>
                             </div>
                             <p class="font-medium text-gray-700 dark:text-gray-300">Natation</p>
@@ -359,7 +550,7 @@
     </section>
 
     <!-- Education Section -->
-    <section id="formation" class="py-20 bg-gradient-to-br from-babyBlue/30 to-white dark:from-darkBlue dark:to-primary/30">
+    <section id="formation" class="py-20 bg-gradient-to-br from-babyBlue/30 to-white dark:from-darkBlue dark:to-primary/30 animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-darkBlue dark:text-lightBlue">Parcours académique</h2>
             
@@ -368,13 +559,13 @@
                 <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/30 dark:bg-babyBlue/30"></div>
                 
                 <!-- Timeline Items -->
-                <div class="space-y-16">
+                <div class="space-y-16 stagger-animation">
                     <!-- Item 1 -->
                     <div class="relative">
-                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-3 w-6 h-6 rounded-full bg-primary dark:bg-babyBlue border-4 border-white dark:border-dark"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-3 w-6 h-6 rounded-full bg-primary dark:bg-babyBlue border-4 border-white dark:border-dark animate-pulse"></div>
                         <div class="flex flex-col md:flex-row">
                             <div class="md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
-                                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg inline-block">
+                                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg inline-block hover-3d">
                                     <h3 class="text-xl font-bold text-primary dark:text-babyBlue">2023 - Aujourd'hui</h3>
                                     <h4 class="text-lg font-semibold mb-2">Cycle d'Ingénieur</h4>
                                     <p class="text-gray-600 dark:text-gray-300">Ingénierie Mécatronique et Systèmes Intelligents</p>
@@ -387,11 +578,11 @@
                     
                     <!-- Item 2 -->
                     <div class="relative">
-                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-3 w-6 h-6 rounded-full bg-primary dark:bg-babyBlue border-4 border-white dark:border-dark"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-3 w-6 h-6 rounded-full bg-primary dark:bg-babyBlue border-4 border-white dark:border-dark animate-pulse"></div>
                         <div class="flex flex-col md:flex-row">
                             <div class="md:w-1/2 md:pr-8"></div>
                             <div class="md:w-1/2 md:pl-8">
-                                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg inline-block">
+                                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg inline-block hover-3d">
                                     <h3 class="text-xl font-bold text-primary dark:text-babyBlue">2022 - 2023</h3>
                                     <h4 class="text-lg font-semibold mb-2">Licence en Sciences et Techniques</h4>
                                     <p class="text-gray-600 dark:text-gray-300">Électronique, Électrotechnique et Automatique</p>
@@ -403,10 +594,10 @@
                     
                     <!-- Item 3 -->
                     <div class="relative">
-                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-3 w-6 h-6 rounded-full bg-primary dark:bg-babyBlue border-4 border-white dark:border-dark"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-3 w-6 h-6 rounded-full bg-primary dark:bg-babyBlue border-4 border-white dark:border-dark animate-pulse"></div>
                         <div class="flex flex-col md:flex-row">
                             <div class="md:w-1/2 md:pr-8 md:text-right">
-                                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg inline-block">
+                                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg inline-block hover-3d">
                                     <h3 class="text-xl font-bold text-primary dark:text-babyBlue">2019 - 2022</h3>
                                     <h4 class="text-lg font-semibold mb-2">DEUST - Mathématique, Informatique et Physique</h4>
                                     <p class="text-gray-600 dark:text-gray-300">Diplôme d'Etudes Universitaires Scientifiques et Techniques</p>
@@ -419,11 +610,11 @@
                     
                     <!-- Item 4 -->
                     <div class="relative">
-                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-3 w-6 h-6 rounded-full bg-primary dark:bg-babyBlue border-4 border-white dark:border-dark"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -top-3 w-6 h-6 rounded-full bg-primary dark:bg-babyBlue border-4 border-white dark:border-dark animate-pulse"></div>
                         <div class="flex flex-col md:flex-row">
                             <div class="md:w-1/2 md:pr-8"></div>
                             <div class="md:w-1/2 md:pl-8">
-                                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg inline-block">
+                                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg inline-block hover-3d">
                                     <h3 class="text-xl font-bold text-primary dark:text-babyBlue">2018 - 2019</h3>
                                     <h4 class="text-lg font-semibold mb-2">Baccalauréat en Sciences Expérimentales</h4>
                                     <p class="text-gray-600 dark:text-gray-300">Option sciences physiques</p>
@@ -438,7 +629,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="competences" class="py-20 bg-white dark:bg-dark">
+    <section id="competences" class="py-20 bg-white dark:bg-dark animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-primary dark:text-babyBlue">Expertise</h2>
             
@@ -449,86 +640,86 @@
                     <span class="absolute bottom-0 left-0 w-full h-1 bg-primary dark:bg-babyBlue"></span>
                 </h3>
                 
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 stagger-animation">
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-brands fa-python text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">Python</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-code text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">C++</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-microchip text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">Arduino</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-microchip text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">ESP32</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-brands fa-raspberry-pi text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">Raspberry Pi</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-network-wired text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">MQTT</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-satellite-dish text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">LoRa</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-bus text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">CAN</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-microchip text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">I2C</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-plug text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">UART</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-brain text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">Machine Learning</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-project-diagram text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <h4 class="font-medium">Deep Learning</h4>
@@ -543,73 +734,73 @@
                     <span class="absolute bottom-0 left-0 w-full h-1 bg-cherryRed dark:bg-offWhite"></span>
                 </h3>
                 
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 stagger-animation">
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
                         <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3">
+                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
                                 <i class="fa-solid fa-cogs text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <h4 class="font-medium">Fabrication mécanique</h4>
                         </div>
                     </div>
                     
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
                         <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3">
+                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
                                 <i class="fa-solid fa-tools text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <h4 class="font-medium">Résistance des matériaux</h4>
                         </div>
                     </div>
                     
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
                         <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3">
+                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
                                 <i class="fa-solid fa-temperature-high text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <h4 class="font-medium">Transfert thermique</h4>
                         </div>
                     </div>
                     
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
                         <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3">
+                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
                                 <i class="fa-solid fa-bolt text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <h4 class="font-medium">Machines électriques</h4>
                         </div>
                     </div>
                     
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
                         <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3">
+                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
                                 <i class="fa-solid fa-robot text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <h4 class="font-medium">Automatique</h4>
                         </div>
                     </div>
                     
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
                         <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3">
+                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
                                 <i class="fa-solid fa-microchip text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <h4 class="font-medium">Traitement de données IoT</h4>
                         </div>
                     </div>
                     
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
                         <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3">
+                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
                                 <i class="fa-solid fa-database text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <h4 class="font-medium">InfluxDB & MongoDB</h4>
                         </div>
                     </div>
                     
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
                         <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3">
+                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
                                 <i class="fa-solid fa-chart-line text-cherryRed dark:text-offWhite"></i>
                             </div>
                             <h4 class="font-medium">Visualisation Grafana</h4>
@@ -625,86 +816,86 @@
                     <span class="absolute bottom-0 left-0 w-full h-1 bg-success dark:bg-info"></span>
                 </h3>
                 
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 stagger-animation">
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-database text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">MySQL</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-drafting-compass text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">CATIA v5</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-cubes text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">SolidWorks</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-draw-polygon text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">AutoCAD</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-sitemap text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">Node-RED</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-chart-line text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">Grafana</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-database text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">InfluxDB</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-cloud text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">ThingSpeak</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-robot text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">Robotique</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-brands fa-python text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">Python</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-code text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">C/C++</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-brands fa-js text-2xl text-success dark:text-info"></i>
                         </div>
                         <h4 class="font-medium">JavaScript</h4>
@@ -719,44 +910,44 @@
                     <span class="absolute bottom-0 left-0 w-full h-1 bg-darkBlue dark:bg-babyBlue"></span>
                 </h3>
                 
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 stagger-animation">
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-blue-600/10 dark:bg-blue-600/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-blue-600/10 dark:bg-blue-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-regular fa-file-word text-2xl text-blue-600"></i>
                         </div>
                         <h4 class="font-medium">Word</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-green-600/10 dark:bg-green-600/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-green-600/10 dark:bg-green-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-regular fa-file-excel text-2xl text-green-600"></i>
                         </div>
                         <h4 class="font-medium">Excel</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-red-600/10 dark:bg-red-600/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-red-600/10 dark:bg-red-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-regular fa-file-powerpoint text-2xl text-red-600"></i>
                         </div>
                         <h4 class="font-medium">PowerPoint</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-blue-700/10 dark:bg-blue-700/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-blue-700/10 dark:bg-blue-700/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-regular fa-file-lines text-2xl text-blue-700"></i>
                         </div>
                         <h4 class="font-medium">Project</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-orange-600/10 dark:bg-orange-600/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-orange-600/10 dark:bg-orange-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-brands fa-git-alt text-2xl text-orange-600"></i>
                         </div>
                         <h4 class="font-medium">Git</h4>
                     </div>
                     
                     <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-blue-500/10 dark:bg-blue-500/20 rounded-full flex items-center justify-center mb-3">
+                        <div class="w-14 h-14 mx-auto bg-blue-500/10 dark:bg-blue-500/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-code text-2xl text-blue-500"></i>
                         </div>
                         <h4 class="font-medium">VS Code</h4>
@@ -767,15 +958,15 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projets" class="py-20 bg-gradient-to-br from-pastelPink/30 to-white dark:from-accent/40 dark:to-dark/90">
+    <section id="projets" class="py-20 bg-gradient-to-br from-pastelPink/30 to-white dark:from-accent/40 dark:to-dark/90 animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-primary dark:text-pastelPink">Mes Projets</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 stagger-animation">
                 <!-- Project 1 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <div class="relative h-48 bg-gradient-to-r from-primary/80 to-secondary/80 dark:from-primary dark:to-accent">
-                        <div class="absolute inset-0 flex items-center justify-center">
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg glow-border">
+                    <div class="relative h-48 bg-gradient-to-r from-primary/80 to-secondary/80 dark:from-primary dark:to-accent group">
+                        <div class="absolute inset-0 flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-6">
                             <i class="fa-solid fa-car text-6xl text-white"></i>
                         </div>
                     </div>
@@ -793,17 +984,17 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-primary/20 text-primary dark:bg-primary/30 dark:text-pastelPink px-3 py-1 rounded-full text-sm">Arduino</span>
-                            <span class="bg-primary/20 text-primary dark:bg-primary/30 dark:text-pastelPink px-3 py-1 rounded-full text-sm">Capteurs IR</span>
-                            <span class="bg-primary/20 text-primary dark:bg-primary/30 dark:text-pastelPink px-3 py-1 rounded-full text-sm">C++</span>
+                            <span class="bg-primary/20 text-primary dark:bg-primary/30 dark:text-pastelPink px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Arduino</span>
+                            <span class="bg-primary/20 text-primary dark:bg-primary/30 dark:text-pastelPink px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Capteurs IR</span>
+                            <span class="bg-primary/20 text-primary dark:bg-primary/30 dark:text-pastelPink px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">C++</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project 2 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <div class="relative h-48 bg-gradient-to-r from-babyBlue/80 to-lightBlue/80 dark:from-darkBlue dark:to-lightBlue/70">
-                        <div class="absolute inset-0 flex items-center justify-center">
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg glow-border">
+                    <div class="relative h-48 bg-gradient-to-r from-babyBlue/80 to-lightBlue/80 dark:from-darkBlue dark:to-lightBlue/70 group">
+                        <div class="absolute inset-0 flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-6">
                             <i class="fa-solid fa-cloud-sun-rain text-6xl text-white"></i>
                         </div>
                     </div>
@@ -821,18 +1012,18 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-babyBlue/20 text-darkBlue dark:bg-darkBlue/30 dark:text-lightBlue px-3 py-1 rounded-full text-sm">ESP32</span>
-                            <span class="bg-babyBlue/20 text-darkBlue dark:bg-darkBlue/30 dark:text-lightBlue px-3 py-1 rounded-full text-sm">MQTT</span>
-                            <span class="bg-babyBlue/20 text-darkBlue dark:bg-darkBlue/30 dark:text-lightBlue px-3 py-1 rounded-full text-sm">ThingSpeak</span>
-                            <span class="bg-babyBlue/20 text-darkBlue dark:bg-darkBlue/30 dark:text-lightBlue px-3 py-1 rounded-full text-sm">Django</span>
+                            <span class="bg-babyBlue/20 text-darkBlue dark:bg-darkBlue/30 dark:text-lightBlue px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">ESP32</span>
+                            <span class="bg-babyBlue/20 text-darkBlue dark:bg-darkBlue/30 dark:text-lightBlue px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">MQTT</span>
+                            <span class="bg-babyBlue/20 text-darkBlue dark:bg-darkBlue/30 dark:text-lightBlue px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">ThingSpeak</span>
+                            <span class="bg-babyBlue/20 text-darkBlue dark:bg-darkBlue/30 dark:text-lightBlue px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Django</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project 3 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <div class="relative h-48 bg-gradient-to-r from-cherryRed/80 to-offWhite/80 dark:from-cherryRed dark:to-offWhite/30">
-                        <div class="absolute inset-0 flex items-center justify-center">
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg glow-border">
+                    <div class="relative h-48 bg-gradient-to-r from-cherryRed/80 to-offWhite/80 dark:from-cherryRed dark:to-offWhite/30 group">
+                        <div class="absolute inset-0 flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-6">
                             <i class="fa-solid fa-robot text-6xl text-white"></i>
                         </div>
                     </div>
@@ -850,18 +1041,18 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">SolidWorks</span>
-                            <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">Python</span>
-                            <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">ROS</span>
-                            <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm">Gazebo</span>
+                            <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">SolidWorks</span>
+                            <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Python</span>
+                            <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">ROS</span>
+                            <span class="bg-cherryRed/20 text-cherryRed dark:bg-cherryRed/30 dark:text-offWhite px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Gazebo</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project 4 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <div class="relative h-48 bg-gradient-to-r from-success/80 to-info/80 dark:from-success dark:to-info/70">
-                        <div class="absolute inset-0 flex items-center justify-center">
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg glow-border">
+                    <div class="relative h-48 bg-gradient-to-r from-success/80 to-info/80 dark:from-success dark:to-info/70 group">
+                        <div class="absolute inset-0 flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-6">
                             <i class="fa-solid fa-home text-6xl text-white"></i>
                         </div>
                     </div>
@@ -879,18 +1070,18 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-success/20 text-success dark:bg-success/30 dark:text-info px-3 py-1 rounded-full text-sm">Arduino</span>
-                            <span class="bg-success/20 text-success dark:bg-success/30 dark:text-info px-3 py-1 rounded-full text-sm">Bluetooth</span>
-                            <span class="bg-success/20 text-success dark:bg-success/30 dark:text-info px-3 py-1 rounded-full text-sm">IoT</span>
-                            <span class="bg-success/20 text-success dark:bg-success/30 dark:text-info px-3 py-1 rounded-full text-sm">C++</span>
+                            <span class="bg-success/20 text-success dark:bg-success/30 dark:text-info px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Arduino</span>
+                            <span class="bg-success/20 text-success dark:bg-success/30 dark:text-info px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Bluetooth</span>
+                            <span class="bg-success/20 text-success dark:bg-success/30 dark:text-info px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">IoT</span>
+                            <span class="bg-success/20 text-success dark:bg-success/30 dark:text-info px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">C++</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project 5 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <div class="relative h-48 bg-gradient-to-r from-purple-600/80 to-purple-400/80 dark:from-purple-700 dark:to-purple-500/70">
-                        <div class="absolute inset-0 flex items-center justify-center">
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg glow-border">
+                    <div class="relative h-48 bg-gradient-to-r from-purple-600/80 to-purple-400/80 dark:from-purple-700 dark:to-purple-500/70 group">
+                        <div class="absolute inset-0 flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-6">
                             <i class="fa-solid fa-desktop text-6xl text-white"></i>
                         </div>
                     </div>
@@ -909,18 +1100,18 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-purple-600/20 text-purple-600 dark:bg-purple-600/30 dark:text-purple-300 px-3 py-1 rounded-full text-sm">Python</span>
-                            <span class="bg-purple-600/20 text-purple-600 dark:bg-purple-600/30 dark:text-purple-300 px-3 py-1 rounded-full text-sm">Django</span>
-                            <span class="bg-purple-600/20 text-purple-600 dark:bg-purple-600/30 dark:text-purple-300 px-3 py-1 rounded-full text-sm">JavaScript</span>
-                            <span class="bg-purple-600/20 text-purple-600 dark:bg-purple-600/30 dark:text-purple-300 px-3 py-1 rounded-full text-sm">VS Code</span>
+                            <span class="bg-purple-600/20 text-purple-600 dark:bg-purple-600/30 dark:text-purple-300 px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Python</span>
+                            <span class="bg-purple-600/20 text-purple-600 dark:bg-purple-600/30 dark:text-purple-300 px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Django</span>
+                            <span class="bg-purple-600/20 text-purple-600 dark:bg-purple-600/30 dark:text-purple-300 px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">JavaScript</span>
+                            <span class="bg-purple-600/20 text-purple-600 dark:bg-purple-600/30 dark:text-purple-300 px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">VS Code</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project 6 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-                    <div class="relative h-48 bg-gradient-to-r from-amber-600/80 to-amber-400/80 dark:from-amber-700 dark:to-amber-500/70">
-                        <div class="absolute inset-0 flex items-center justify-center">
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg glow-border">
+                    <div class="relative h-48 bg-gradient-to-r from-amber-600/80 to-amber-400/80 dark:from-amber-700 dark:to-amber-500/70 group">
+                        <div class="absolute inset-0 flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-6">
                             <i class="fa-solid fa-traffic-light text-6xl text-white"></i>
                         </div>
                     </div>
@@ -939,10 +1130,10 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-amber-600/20 text-amber-600 dark:bg-amber-600/30 dark:text-amber-300 px-3 py-1 rounded-full text-sm">Python</span>
-                            <span class="bg-amber-600/20 text-amber-600 dark:bg-amber-600/30 dark:text-amber-300 px-3 py-1 rounded-full text-sm">Arduino</span>
-                            <span class="bg-amber-600/20 text-amber-600 dark:bg-amber-600/30 dark:text-amber-300 px-3 py-1 rounded-full text-sm">Capteurs</span>
-                            <span class="bg-amber-600/20 text-amber-600 dark:bg-amber-600/30 dark:text-amber-300 px-3 py-1 rounded-full text-sm">Algorithmique</span>
+                            <span class="bg-amber-600/20 text-amber-600 dark:bg-amber-600/30 dark:text-amber-300 px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Python</span>
+                            <span class="bg-amber-600/20 text-amber-600 dark:bg-amber-600/30 dark:text-amber-300 px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Arduino</span>
+                            <span class="bg-amber-600/20 text-amber-600 dark:bg-amber-600/30 dark:text-amber-300 px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Capteurs</span>
+                            <span class="bg-amber-600/20 text-amber-600 dark:bg-amber-600/30 dark:text-amber-300 px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-110">Algorithmique</span>
                         </div>
                     </div>
                 </div>
@@ -951,25 +1142,25 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white dark:bg-dark">
+    <section id="experience" class="py-20 bg-white dark:bg-dark animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-primary dark:text-babyBlue">Parcours professionnel</h2>
             
             <div class="max-w-3xl mx-auto">
-                <div class="relative flex flex-col space-y-10">
+                <div class="relative flex flex-col space-y-10 stagger-animation">
                     <!-- Timeline Line -->
                     <div class="absolute left-8 top-0 h-full w-0.5 bg-primary/30 dark:bg-babyBlue/30"></div>
                     
                     <!-- Experience 1 -->
                     <div class="relative flex">
                         <div class="flex flex-col items-center mr-4">
-                            <div class="w-16 h-16 bg-primary dark:bg-babyBlue rounded-full flex items-center justify-center z-10">
+                            <div class="w-16 h-16 bg-primary dark:bg-babyBlue rounded-full flex items-center justify-center z-10 transform transition-all hover:scale-110 hover:rotate-12 animate-pulse-shadow">
                                 <i class="fa-solid fa-plane text-white text-2xl"></i>
                             </div>
                             <div class="h-full"></div>
                         </div>
                         
-                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md flex-1">
+                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md flex-1 hover-3d">
                             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                                 <h3 class="text-xl font-bold text-primary dark:text-babyBlue">Stage d'application</h3>
                                 <span class="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">Août - Septembre 2024</span>
@@ -984,13 +1175,13 @@
                     <!-- Experience 2 -->
                     <div class="relative flex">
                         <div class="flex flex-col items-center mr-4">
-                            <div class="w-16 h-16 bg-cherryRed dark:bg-pastelPink rounded-full flex items-center justify-center z-10">
+                            <div class="w-16 h-16 bg-cherryRed dark:bg-pastelPink rounded-full flex items-center justify-center z-10 transform transition-all hover:scale-110 hover:rotate-12 animate-pulse-shadow">
                                 <i class="fa-solid fa-tools text-white dark:text-cherryRed text-2xl"></i>
                             </div>
                             <div class="h-full"></div>
                         </div>
                         
-                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md flex-1">
+                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md flex-1 hover-3d">
                             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                                 <h3 class="text-xl font-bold text-cherryRed dark:text-pastelPink">Stage d'observation</h3>
                                 <span class="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">Juin - Juillet 2024</span>
@@ -1005,13 +1196,13 @@
                     <!-- Experience 3 -->
                     <div class="relative flex">
                         <div class="flex flex-col items-center mr-4">
-                            <div class="w-16 h-16 bg-success dark:bg-info rounded-full flex items-center justify-center z-10">
+                            <div class="w-16 h-16 bg-success dark:bg-info rounded-full flex items-center justify-center z-10 transform transition-all hover:scale-110 hover:rotate-12 animate-pulse-shadow">
                                 <i class="fa-solid fa-industry text-white text-2xl"></i>
                             </div>
                             <div class="h-full"></div>
                         </div>
                         
-                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md flex-1">
+                        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md flex-1 hover-3d">
                             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                                 <h3 class="text-xl font-bold text-success dark:text-info">Stage fin d'étude pour Licence</h3>
                                 <span class="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">Avril - Juin 2023</span>
@@ -1028,15 +1219,15 @@
     </section>
     
     <!-- Certifications Section -->
-    <section id="certifications" class="py-20 bg-gradient-to-br from-darkBlue/20 to-lightBlue/10 dark:from-darkBlue/40 dark:to-lightBlue/20">
+    <section id="certifications" class="py-20 bg-gradient-to-br from-darkBlue/20 to-lightBlue/10 dark:from-darkBlue/40 dark:to-lightBlue/20 animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-darkBlue dark:text-lightBlue">Certifications</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-animation">
                 <!-- Oracle Project Management -->
                 <div class="certificate-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-red-700 dark:border-red-500 hover:shadow-xl transition-shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-red-700/10 rounded-full">
+                        <div class="w-12 h-12 flex items-center justify-center bg-red-700/10 rounded-full transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-brands fa-oracle text-2xl text-red-700 dark:text-red-500"></i>
                         </div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Mars 2025</span>
@@ -1046,8 +1237,8 @@
                     <div class="mt-3">
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Credential ID: OC5722136</p>
                         <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Project Management</span>
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Data Science</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Project Management</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Data Science</span>
                         </div>
                     </div>
                 </div>
@@ -1055,7 +1246,7 @@
                 <!-- PCB Design -->
                 <div class="certificate-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-red-500 dark:border-red-400 hover:shadow-xl transition-shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-red-500/10 rounded-full">
+                        <div class="w-12 h-12 flex items-center justify-center bg-red-500/10 rounded-full transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-brands fa-udemy text-2xl text-red-500 dark:text-red-400"></i>
                         </div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Janvier 2025</span>
@@ -1070,7 +1261,7 @@
                 <!-- MATLAB Course -->
                 <div class="certificate-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-blue-600 dark:border-blue-500 hover:shadow-xl transition-shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-blue-600/10 rounded-full">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-600/10 rounded-full transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-square-m text-2xl text-blue-600 dark:text-blue-500"></i>
                         </div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Décembre 2024</span>
@@ -1080,8 +1271,8 @@
                     <div class="mt-3">
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Credential ID: UC-03d7eeed-0231-41a1-96f9-232c73f76032</p>
                         <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Matlab Programming</span>
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Signal Processing</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Matlab Programming</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Signal Processing</span>
                         </div>
                     </div>
                 </div>
@@ -1089,8 +1280,8 @@
                 <!-- Agile Project Management -->
                 <div class="certificate-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-blue-700 dark:border-blue-600 hover:shadow-xl transition-shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-blue-700/10 rounded-full">
-                            <i class="fa-brands fa-hp text-2xl text-blue-700 dark:text-blue-600"></i>
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-700/10 rounded-full transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-brands fa-jira text-2xl text-blue-700 dark:text-blue-600"></i>
                         </div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Janvier 2025</span>
                     </div>
@@ -1099,8 +1290,8 @@
                     <div class="mt-3">
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Credential ID: b4ac1448-f520-4945-9065-8fc25b3ca098</p>
                         <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Management</span>
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Project Management</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Management</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Project Management</span>
                         </div>
                     </div>
                 </div>
@@ -1108,8 +1299,8 @@
                 <!-- CFD Simulation -->
                 <div class="certificate-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-blue-500 dark:border-blue-400 hover:shadow-xl transition-shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-blue-500/10 rounded-full">
-                            <i class="fa-brands fa-codiepie text-2xl text-blue-500 dark:text-blue-400"></i>
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-500/10 rounded-full transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-solid fa-wind text-2xl text-blue-500 dark:text-blue-400"></i>
                         </div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Novembre 2024</span>
                     </div>
@@ -1118,8 +1309,8 @@
                     <div class="mt-3">
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Credential ID: BC48777512367</p>
                         <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Fluid Mechanics</span>
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Mechanical Design</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Fluid Mechanics</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Mechanical Design</span>
                         </div>
                     </div>
                 </div>
@@ -1127,8 +1318,8 @@
                 <!-- Deep Learning -->
                 <div class="certificate-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-green-600 dark:border-green-500 hover:shadow-xl transition-shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-green-600/10 rounded-full">
-                            <i class="fa-solid fa-database text-2xl text-green-600 dark:text-green-500"></i>
+                        <div class="w-12 h-12 flex items-center justify-center bg-green-600/10 rounded-full transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-solid fa-brain text-2xl text-green-600 dark:text-green-500"></i>
                         </div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Novembre 2024</span>
                     </div>
@@ -1137,9 +1328,9 @@
                     <div class="mt-3">
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Credential ID: CC-E6B2228DEB</p>
                         <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Deep Learning</span>
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">TensorFlow 2.0</span>
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">NLP</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Deep Learning</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">TensorFlow 2.0</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">NLP</span>
                         </div>
                     </div>
                 </div>
@@ -1147,7 +1338,7 @@
                 <!-- PMP Training -->
                 <div class="certificate-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-purple-600 dark:border-purple-500 hover:shadow-xl transition-shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-purple-600/10 rounded-full">
+                        <div class="w-12 h-12 flex items-center justify-center bg-purple-600/10 rounded-full transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-certificate text-2xl text-purple-600 dark:text-purple-500"></i>
                         </div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Décembre 2024</span>
@@ -1157,7 +1348,7 @@
                     <div class="mt-3">
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Credential ID: cert_45x0grs2</p>
                         <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Project Management</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Project Management</span>
                         </div>
                     </div>
                 </div>
@@ -1165,7 +1356,7 @@
                 <!-- ISO 45001 -->
                 <div class="certificate-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-yellow-600 dark:border-yellow-500 hover:shadow-xl transition-shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-yellow-600/10 rounded-full">
+                        <div class="w-12 h-12 flex items-center justify-center bg-yellow-600/10 rounded-full transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-shield-alt text-2xl text-yellow-600 dark:text-yellow-500"></i>
                         </div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Novembre 2024</span>
@@ -1175,8 +1366,8 @@
                     <div class="mt-3">
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Credential ID: 2hjadwkdfa</p>
                         <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">ISO 45001</span>
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">Health and Safety</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">ISO 45001</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">Health and Safety</span>
                         </div>
                     </div>
                 </div>
@@ -1184,8 +1375,8 @@
                 <!-- Quality Management -->
                 <div class="certificate-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-orange-600 dark:border-orange-500 hover:shadow-xl transition-shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-orange-600/10 rounded-full">
-                            <i class="fa-brands fa-udemy text-2xl text-orange-600 dark:text-orange-500"></i>
+                        <div class="w-12 h-12 flex items-center justify-center bg-orange-600/10 rounded-full transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-solid fa-check-double text-2xl text-orange-600 dark:text-orange-500"></i>
                         </div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Novembre 2024</span>
                     </div>
@@ -1194,7 +1385,7 @@
                     <div class="mt-3">
                         <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Credential ID: UC-dc3f4857-b731-42dc-ab05-01dc9e28a642</p>
                         <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300">ISO Standards</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-800 dark:text-gray-300 transform transition-transform hover:scale-110">ISO Standards</span>
                         </div>
                     </div>
                 </div>
@@ -1202,8 +1393,8 @@
                 <!-- ISO 9001 -->
                 <div class="certificate-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-teal-600 dark:border-teal-500 hover:shadow-xl transition-shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 flex items-center justify-center bg-teal-600/10 rounded-full">
-                            <i class="fa-solid fa-certificate text-2xl text-teal-600 dark:text-teal-500"></i>
+                        <div class="w-12 h-12 flex items-center justify-center bg-teal-600/10 rounded-full transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-solid fa-award text-2xl text-teal-600 dark:text-teal-500"></i>
                         </div>
                         <span class="text-sm text-gray-500 dark:text-gray-400">Septembre 2024</span>
                     </div>
@@ -1216,7 +1407,7 @@
                 
                 <!-- View more button -->
                 <div class="md:col-span-2 lg:col-span-3 text-center mt-4">
-                    <button id="view-more-certs" class="bg-primary/10 hover:bg-primary/20 text-primary dark:bg-primary/20 dark:hover:bg-primary/30 dark:text-lightBlue font-medium py-2 px-6 rounded-full transition-colors">
+                    <button id="view-more-certs" class="bg-primary/10 hover:bg-primary/20 text-primary dark:bg-primary/20 dark:hover:bg-primary/30 dark:text-lightBlue font-medium py-2 px-6 rounded-full transition-colors btn-shine">
                         Voir plus de certifications
                     </button>
                 </div>
@@ -1225,72 +1416,72 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gradient-to-br from-primary/20 to-secondary/10 dark:from-primary/40 dark:to-secondary/20">
+    <section id="contact" class="py-20 bg-gradient-to-br from-primary/20 to-secondary/10 dark:from-primary/40 dark:to-secondary/20 animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-primary dark:text-babyBlue">Restons en contact</h2>
             <p class="text-center text-gray-600 dark:text-gray-300 max-w-xl mx-auto mb-16">Intéressé par mon profil ? N'hésitez pas à me contacter pour discuter de projets ou d'opportunités.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Contact Form -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg hover-3d">
                     <h3 class="text-2xl font-bold mb-6 text-primary dark:text-babyBlue">Envoyez-moi un message</h3>
                     
                     <form id="contact-form" class="space-y-6">
                         <div>
                             <label for="name" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Nom complet</label>
-                            <input type="text" id="name" name="name" placeholder="Votre nom" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary dark:focus:ring-babyBlue focus:border-transparent outline-none text-base">
+                            <input type="text" id="name" name="name" placeholder="Votre nom" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary dark:focus:ring-babyBlue focus:border-transparent outline-none text-base transition-all">
                         </div>
                         
                         <div>
                             <label for="email" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary dark:focus:ring-babyBlue focus:border-transparent outline-none text-base">
+                            <input type="email" id="email" name="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary dark:focus:ring-babyBlue focus:border-transparent outline-none text-base transition-all">
                         </div>
                         
                         <div>
                             <label for="subject" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Sujet</label>
-                            <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary dark:focus:ring-babyBlue focus:border-transparent outline-none text-base">
+                            <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary dark:focus:ring-babyBlue focus:border-transparent outline-none text-base transition-all">
                         </div>
                         
                         <div>
                             <label for="message" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Message</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Votre message" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary dark:focus:ring-babyBlue focus:border-transparent outline-none text-base"></textarea>
+                            <textarea id="message" name="message" rows="4" placeholder="Votre message" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary dark:focus:ring-babyBlue focus:border-transparent outline-none text-base transition-all"></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-gray-800">
+                        <button type="submit" class="w-full px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-gray-800 btn-shine">
                             <i class="fa-solid fa-paper-plane mr-2"></i> Envoyer
                         </button>
                     </form>
                 </div>
                 
                 <!-- Contact Info -->
-                <div class="space-y-6">
+                <div class="space-y-6 stagger-animation">
                     <!-- Phone -->
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex">
-                        <div class="bg-primary/10 dark:bg-babyBlue/10 p-4 rounded-full mr-4">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex hover-3d">
+                        <div class="bg-primary/10 dark:bg-babyBlue/10 p-4 rounded-full mr-4 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-phone text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <div>
                             <h4 class="text-lg font-semibold mb-1">Téléphone</h4>
                             <p class="text-gray-600 dark:text-gray-300 mb-2">N'hésitez pas à m'appeler pour discuter de vos projets.</p>
-                            <a href="tel:+212655944968" class="text-primary dark:text-babyBlue font-medium hover:underline">+212 655-944-968</a>
+                            <a href="tel:+212655944968" class="text-primary dark:text-babyBlue font-medium hover:underline transition-all">+212 655-944-968</a>
                         </div>
                     </div>
                     
                     <!-- Email -->
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex">
-                        <div class="bg-cherryRed/10 dark:bg-pastelPink/10 p-4 rounded-full mr-4">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex hover-3d">
+                        <div class="bg-cherryRed/10 dark:bg-pastelPink/10 p-4 rounded-full mr-4 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-envelope text-2xl text-cherryRed dark:text-pastelPink"></i>
                         </div>
                         <div>
                             <h4 class="text-lg font-semibold mb-1">Email</h4>
                             <p class="text-gray-600 dark:text-gray-300 mb-2">Envoyez-moi un email et je vous répondrai dans les plus brefs délais.</p>
-                            <a href="mailto:elhasbiszakaria000@gmail.com" class="text-cherryRed dark:text-pastelPink font-medium hover:underline">elhasbiszakaria000@gmail.com</a>
+                            <a href="mailto:elhasbiszakaria000@gmail.com" class="text-cherryRed dark:text-pastelPink font-medium hover:underline transition-all">elhasbiszakaria000@gmail.com</a>
                         </div>
                     </div>
                     
                     <!-- Location -->
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex">
-                        <div class="bg-success/10 dark:bg-info/10 p-4 rounded-full mr-4">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex hover-3d">
+                        <div class="bg-success/10 dark:bg-info/10 p-4 rounded-full mr-4 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-solid fa-map-marker-alt text-2xl text-success dark:text-info"></i>
                         </div>
                         <div>
@@ -1301,14 +1492,14 @@
                     </div>
                     
                     <!-- LinkedIn -->
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex">
-                        <div class="bg-primary/10 dark:bg-babyBlue/10 p-4 rounded-full mr-4">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex hover-3d">
+                        <div class="bg-primary/10 dark:bg-babyBlue/10 p-4 rounded-full mr-4 transform transition-all hover:scale-110 hover:rotate-12">
                             <i class="fa-brands fa-linkedin-in text-2xl text-primary dark:text-babyBlue"></i>
                         </div>
                         <div>
                             <h4 class="text-lg font-semibold mb-1">LinkedIn</h4>
                             <p class="text-gray-600 dark:text-gray-300 mb-2">Connectons-nous sur LinkedIn pour des opportunités professionnelles.</p>
-                            <a href="https://www.linkedin.com/in/zakaria-elhasbis/" target="_blank" class="text-primary dark:text-babyBlue font-medium hover:underline">Zakaria ELHASBIS</a>
+                            <a href="https://www.linkedin.com/in/zakaria-elhasbis/" target="_blank" class="text-primary dark:text-babyBlue font-medium hover:underline transition-all">Zakaria ELHASBIS</a>
                         </div>
                     </div>
                 </div>
@@ -1316,7 +1507,7 @@
             
             <!-- CV Download -->
             <div class="mt-16 text-center">
-                <a href="#" id="download-cv" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary to-secondary dark:from-darkBlue dark:to-primary text-white font-medium rounded-lg transition-all transform hover:scale-105 focus:outline-none shadow-lg">
+                <a href="#" id="download-cv" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-primary to-secondary dark:from-darkBlue dark:to-primary text-white font-medium rounded-lg transition-all transform hover:scale-110 focus:outline-none shadow-lg btn-shine">
                     <i class="fa-solid fa-download mr-2"></i> Télécharger mon CV
                 </a>
             </div>
@@ -1328,19 +1519,19 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-3xl font-bold text-babyBlue mb-2">ZE.</div>
+                    <div class="text-3xl font-bold text-babyBlue mb-2">Elhasbis Zakaria</div>
                     <p class="text-gray-400 max-w-xs">Futur Ingénieur en génie mécatronique et systèmes intelligents, passionné d'innovation technologique.</p>
                 </div>
                 
                 <div class="flex flex-col items-center md:items-end">
                     <div class="flex space-x-4 mb-4">
-                        <a href="https://www.linkedin.com/in/zakaria-elhasbis/" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                        <a href="https://www.linkedin.com/in/zakaria-elhasbis/" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors transform transition-transform hover:scale-110">
                             <i class="fa-brands fa-linkedin-in text-lg"></i>
                         </a>
-                        <a href="https://github.com/Zakaria-Elhasbis" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                        <a href="https://github.com/Zakaria-Elhasbis" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors transform transition-transform hover:scale-110">
                             <i class="fa-brands fa-github text-lg"></i>
                         </a>
-                        <a href="mailto:elhasbiszakaria000@gmail.com" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cherryRed transition-colors">
+                        <a href="mailto:elhasbiszakaria000@gmail.com" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cherryRed transition-colors transform transition-transform hover:scale-110">
                             <i class="fa-solid fa-envelope text-lg"></i>
                         </a>
                     </div>
@@ -1351,7 +1542,7 @@
     </footer>
 
     <!-- Back to top button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 p-3 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg transition-all opacity-0 invisible">
+    <button id="back-to-top" class="fixed bottom-6 right-6 p-3 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg transition-all opacity-0 invisible btn-shine animate-pulse-shadow">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
@@ -1472,6 +1663,27 @@
             });
         }
         
+        // Scroll animations
+        function setupScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Observe all elements with animate-on-scroll class
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Observe all elements with stagger-animation class
+            document.querySelectorAll('.stagger-animation').forEach(element => {
+                observer.observe(element);
+            });
+        }
+        
         // Initialize all scripts when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             setupDarkMode();
@@ -1480,6 +1692,7 @@
             setupContactForm();
             setupViewMoreCertifications();
             setupDownloadCV();
+            setupScrollAnimations();
             
             // Smooth scrolling for all anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
