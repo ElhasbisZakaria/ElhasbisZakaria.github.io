@@ -342,6 +342,60 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+        
+        /* Skill Categories */
+        .skill-category {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(30, 64, 175, 0.1), rgba(65, 105, 225, 0.1));
+            z-index: -1;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-category:hover::before {
+            transform: translateY(0);
+        }
+        
+        /* Skill badge glow */
+        .skill-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-badge::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            transition: transform 0.5s;
+            z-index: 1;
+            opacity: 0;
+        }
+        
+        .skill-badge:hover::after {
+            opacity: 1;
+            transform: rotate(30deg) translate(100%, -100%);
+        }
     </style>
 </head>
 <body class="font-sans bg-light dark:bg-dark text-dark dark:text-light">
@@ -373,16 +427,16 @@
                         Formation
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#competences" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
-                        Compétences
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
-                    </a>
                     <a href="#projets" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
                         Projets
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
                     </a>
                     <a href="#experience" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
                         Expérience
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#competences" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
+                        Compétences
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-babyBlue transition-all duration-300 group-hover:w-full"></span>
                     </a>
                     <a href="#certifications" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors relative group">
@@ -408,9 +462,9 @@
                 <a href="#accueil" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Accueil</a>
                 <a href="#apropos" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">À propos</a>
                 <a href="#formation" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Formation</a>
-                <a href="#competences" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Compétences</a>
                 <a href="#projets" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Projets</a>
                 <a href="#experience" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Expérience</a>
+                <a href="#competences" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Compétences</a>
                 <a href="#certifications" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Certifications</a>
                 <a href="#contact" class="font-medium hover:text-primary dark:hover:text-babyBlue transition-colors">Contact</a>
             </div>
@@ -628,339 +682,10 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="competences" class="py-20 bg-white dark:bg-dark animate-on-scroll">
+    <!-- Projects Section - Now directly after Education section -->
+    <section id="projets" class="py-20 bg-white dark:bg-dark animate-on-scroll">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-primary dark:text-babyBlue">Expertise</h2>
-            
-            <!-- Technical Skills -->
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold mb-8 text-darkBlue dark:text-lightBlue relative inline-block">
-                    Compétences techniques
-                    <span class="absolute bottom-0 left-0 w-full h-1 bg-primary dark:bg-babyBlue"></span>
-                </h3>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 stagger-animation">
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-brands fa-python text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">Python</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-code text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">C++</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-microchip text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">Arduino</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-microchip text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">ESP32</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-brands fa-raspberry-pi text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">Raspberry Pi</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-network-wired text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">MQTT</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-satellite-dish text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">LoRa</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-bus text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">CAN</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-microchip text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">I2C</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-plug text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">UART</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-brain text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">Machine Learning</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-project-diagram text-2xl text-primary dark:text-babyBlue"></i>
-                        </div>
-                        <h4 class="font-medium">Deep Learning</h4>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Professional Skills -->
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold mb-8 text-cherryRed dark:text-offWhite relative inline-block">
-                    Compétences professionnelles
-                    <span class="absolute bottom-0 left-0 w-full h-1 bg-cherryRed dark:bg-offWhite"></span>
-                </h3>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 stagger-animation">
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
-                        <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
-                                <i class="fa-solid fa-cogs text-cherryRed dark:text-offWhite"></i>
-                            </div>
-                            <h4 class="font-medium">Fabrication mécanique</h4>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
-                        <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
-                                <i class="fa-solid fa-tools text-cherryRed dark:text-offWhite"></i>
-                            </div>
-                            <h4 class="font-medium">Résistance des matériaux</h4>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
-                        <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
-                                <i class="fa-solid fa-temperature-high text-cherryRed dark:text-offWhite"></i>
-                            </div>
-                            <h4 class="font-medium">Transfert thermique</h4>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
-                        <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
-                                <i class="fa-solid fa-bolt text-cherryRed dark:text-offWhite"></i>
-                            </div>
-                            <h4 class="font-medium">Machines électriques</h4>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
-                        <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
-                                <i class="fa-solid fa-robot text-cherryRed dark:text-offWhite"></i>
-                            </div>
-                            <h4 class="font-medium">Automatique</h4>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
-                        <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
-                                <i class="fa-solid fa-microchip text-cherryRed dark:text-offWhite"></i>
-                            </div>
-                            <h4 class="font-medium">Traitement de données IoT</h4>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
-                        <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
-                                <i class="fa-solid fa-database text-cherryRed dark:text-offWhite"></i>
-                            </div>
-                            <h4 class="font-medium">InfluxDB & MongoDB</h4>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-all">
-                        <div class="flex items-center mb-1">
-                            <div class="w-10 h-10 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-3 transform transition-all hover:scale-110">
-                                <i class="fa-solid fa-chart-line text-cherryRed dark:text-offWhite"></i>
-                            </div>
-                            <h4 class="font-medium">Visualisation Grafana</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Logiciels & Technologies -->
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold mb-8 text-success dark:text-info text-center relative inline-block">
-                    Logiciels & Technologies
-                    <span class="absolute bottom-0 left-0 w-full h-1 bg-success dark:bg-info"></span>
-                </h3>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 stagger-animation">
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-database text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">MySQL</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-drafting-compass text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">CATIA v5</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-cubes text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">SolidWorks</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-draw-polygon text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">AutoCAD</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-sitemap text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">Node-RED</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-chart-line text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">Grafana</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-database text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">InfluxDB</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-cloud text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">ThingSpeak</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-robot text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">Robotique</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-brands fa-python text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">Python</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-code text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">C/C++</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-brands fa-js text-2xl text-success dark:text-info"></i>
-                        </div>
-                        <h4 class="font-medium">JavaScript</h4>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Outils bureautiques -->
-            <div>
-                <h3 class="text-2xl font-bold mb-8 text-darkBlue dark:text-babyBlue text-center relative inline-block">
-                    Outils bureautiques
-                    <span class="absolute bottom-0 left-0 w-full h-1 bg-darkBlue dark:bg-babyBlue"></span>
-                </h3>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 stagger-animation">
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-blue-600/10 dark:bg-blue-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-regular fa-file-word text-2xl text-blue-600"></i>
-                        </div>
-                        <h4 class="font-medium">Word</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-green-600/10 dark:bg-green-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-regular fa-file-excel text-2xl text-green-600"></i>
-                        </div>
-                        <h4 class="font-medium">Excel</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-red-600/10 dark:bg-red-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-regular fa-file-powerpoint text-2xl text-red-600"></i>
-                        </div>
-                        <h4 class="font-medium">PowerPoint</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-blue-700/10 dark:bg-blue-700/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-regular fa-file-lines text-2xl text-blue-700"></i>
-                        </div>
-                        <h4 class="font-medium">Project</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-orange-600/10 dark:bg-orange-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-brands fa-git-alt text-2xl text-orange-600"></i>
-                        </div>
-                        <h4 class="font-medium">Git</h4>
-                    </div>
-                    
-                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
-                        <div class="w-14 h-14 mx-auto bg-blue-500/10 dark:bg-blue-500/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
-                            <i class="fa-solid fa-code text-2xl text-blue-500"></i>
-                        </div>
-                        <h4 class="font-medium">VS Code</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projets" class="py-20 bg-gradient-to-br from-pastelPink/30 to-white dark:from-accent/40 dark:to-dark/90 animate-on-scroll">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-primary dark:text-pastelPink">Mes Projets</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-primary dark:text-babyBlue">Mes Projets</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 stagger-animation">
                 <!-- Project 1 -->
@@ -1141,8 +866,8 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white dark:bg-dark animate-on-scroll">
+    <!-- Experience Section - Now after Projects section -->
+    <section id="experience" class="py-20 bg-gradient-to-br from-babyBlue/30 to-white dark:from-darkBlue dark:to-primary/30 animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-primary dark:text-babyBlue">Parcours professionnel</h2>
             
@@ -1212,6 +937,452 @@
                             </h4>
                             <p class="text-gray-600 dark:text-gray-300 mb-4">Analyse fonctionnelle du système d'injection de la chaux au poste de traitement de l'eau osmosée de l'usine de dessalement de l'eau de mer à Jorf Lasfar.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section - Updated with new skill sets -->
+    <section id="competences" class="py-20 bg-white dark:bg-dark animate-on-scroll">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-primary dark:text-babyBlue">Expertise</h2>
+            
+            <!-- Technical Skills -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-8 text-darkBlue dark:text-lightBlue relative inline-block">
+                    Compétences techniques
+                    <span class="absolute bottom-0 left-0 w-full h-1 bg-primary dark:bg-babyBlue"></span>
+                </h3>
+                
+                <!-- Programmation & Automatisation -->
+                <div class="mb-10">
+                    <h4 class="text-xl font-semibold mb-4 text-primary/90 dark:text-babyBlue/90 flex items-center">
+                        <i class="fa-solid fa-code text-xl mr-2"></i>
+                        Programmation & Automatisation
+                    </h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 stagger-animation">
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-brands fa-python text-2xl text-primary dark:text-babyBlue"></i>
+                            </div>
+                            <h4 class="font-medium">Python</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-code text-2xl text-primary dark:text-babyBlue"></i>
+                            </div>
+                            <h4 class="font-medium">C++</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-industry text-2xl text-primary dark:text-babyBlue"></i>
+                            </div>
+                            <h4 class="font-medium">TIA Portal</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-diagram-project text-2xl text-primary dark:text-babyBlue"></i>
+                            </div>
+                            <h4 class="font-medium">STEP7</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-display text-2xl text-primary dark:text-babyBlue"></i>
+                            </div>
+                            <h4 class="font-medium">WINCC</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-diagram-successor text-2xl text-primary dark:text-babyBlue"></i>
+                            </div>
+                            <h4 class="font-medium">LADDER</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-square-m text-2xl text-primary dark:text-babyBlue"></i>
+                            </div>
+                            <h4 class="font-medium">MATLAB</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-bezier-curve text-2xl text-primary dark:text-babyBlue"></i>
+                            </div>
+                            <h4 class="font-medium">Simulink</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-brands fa-microsoft text-2xl text-primary dark:text-babyBlue"></i>
+                            </div>
+                            <h4 class="font-medium">VBA</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-brands fa-js text-2xl text-primary dark:text-babyBlue"></i>
+                            </div>
+                            <h4 class="font-medium">JavaScript</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CAO & Simulation -->
+                <div class="mb-10">
+                    <h4 class="text-xl font-semibold mb-4 text-primary/90 dark:text-babyBlue/90 flex items-center">
+                        <i class="fa-solid fa-drafting-compass text-xl mr-2"></i>
+                        CAO & Simulation
+                    </h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 stagger-animation">
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-drafting-compass text-2xl text-indigo-600 dark:text-indigo-400"></i>
+                            </div>
+                            <h4 class="font-medium">CATIA v5</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-cubes text-2xl text-indigo-600 dark:text-indigo-400"></i>
+                            </div>
+                            <h4 class="font-medium">SolidWorks</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-draw-polygon text-2xl text-indigo-600 dark:text-indigo-400"></i>
+                            </div>
+                            <h4 class="font-medium">AutoCAD</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-wind text-2xl text-indigo-600 dark:text-indigo-400"></i>
+                            </div>
+                            <h4 class="font-medium">ANSYS</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-atom text-2xl text-indigo-600 dark:text-indigo-400"></i>
+                            </div>
+                            <h4 class="font-medium">Abaqus</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Électronique & PCB -->
+                <div class="mb-10">
+                    <h4 class="text-xl font-semibold mb-4 text-primary/90 dark:text-babyBlue/90 flex items-center">
+                        <i class="fa-solid fa-microchip text-xl mr-2"></i>
+                        Électronique & PCB
+                    </h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 stagger-animation">
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-red-600/10 dark:bg-red-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-microchip text-2xl text-red-600 dark:text-red-400"></i>
+                            </div>
+                            <h4 class="font-medium">PCB Design</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-red-600/10 dark:bg-red-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-sitemap text-2xl text-red-600 dark:text-red-400"></i>
+                            </div>
+                            <h4 class="font-medium">Proteus</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-red-600/10 dark:bg-red-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-car text-2xl text-red-600 dark:text-red-400"></i>
+                            </div>
+                            <h4 class="font-medium">Système ADAS</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-red-600/10 dark:bg-red-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-car-side text-2xl text-red-600 dark:text-red-400"></i>
+                            </div>
+                            <h4 class="font-medium">Système ACC</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-red-600/10 dark:bg-red-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-plug text-2xl text-red-600 dark:text-red-400"></i>
+                            </div>
+                            <h4 class="font-medium">UART</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Systèmes embarqués & IoT -->
+                <div class="mb-10">
+                    <h4 class="text-xl font-semibold mb-4 text-primary/90 dark:text-babyBlue/90 flex items-center">
+                        <i class="fa-solid fa-network-wired text-xl mr-2"></i>
+                        Systèmes embarqués & IoT
+                    </h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 stagger-animation">
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-teal-600/10 dark:bg-teal-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-brands fa-linux text-2xl text-teal-600 dark:text-teal-400"></i>
+                            </div>
+                            <h4 class="font-medium">Linux</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-teal-600/10 dark:bg-teal-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-brands fa-raspberry-pi text-2xl text-teal-600 dark:text-teal-400"></i>
+                            </div>
+                            <h4 class="font-medium">Raspberry Pi</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-teal-600/10 dark:bg-teal-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-microchip text-2xl text-teal-600 dark:text-teal-400"></i>
+                            </div>
+                            <h4 class="font-medium">ESP32</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-teal-600/10 dark:bg-teal-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-server text-2xl text-teal-600 dark:text-teal-400"></i>
+                            </div>
+                            <h4 class="font-medium">BeagleBone</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-teal-600/10 dark:bg-teal-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-microchip text-2xl text-teal-600 dark:text-teal-400"></i>
+                            </div>
+                            <h4 class="font-medium">Arduino</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-teal-600/10 dark:bg-teal-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-brain text-2xl text-teal-600 dark:text-teal-400"></i>
+                            </div>
+                            <h4 class="font-medium">Machine Learning</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Protocoles & Communication -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 text-primary/90 dark:text-babyBlue/90 flex items-center">
+                        <i class="fa-solid fa-satellite-dish text-xl mr-2"></i>
+                        Protocoles & Communication
+                    </h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 stagger-animation">
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-amber-600/10 dark:bg-amber-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-network-wired text-2xl text-amber-600 dark:text-amber-400"></i>
+                            </div>
+                            <h4 class="font-medium">MQTT</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-amber-600/10 dark:bg-amber-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-brands fa-node-js text-2xl text-amber-600 dark:text-amber-400"></i>
+                            </div>
+                            <h4 class="font-medium">Node.js</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-amber-600/10 dark:bg-amber-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-satellite-dish text-2xl text-amber-600 dark:text-amber-400"></i>
+                            </div>
+                            <h4 class="font-medium">LoRa</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-amber-600/10 dark:bg-amber-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-bus text-2xl text-amber-600 dark:text-amber-400"></i>
+                            </div>
+                            <h4 class="font-medium">CAN</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-amber-600/10 dark:bg-amber-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-microchip text-2xl text-amber-600 dark:text-amber-400"></i>
+                            </div>
+                            <h4 class="font-medium">I2C</h4>
+                        </div>
+                        
+                        <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                            <div class="w-14 h-14 mx-auto bg-amber-600/10 dark:bg-amber-600/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                                <i class="fa-solid fa-cloud text-2xl text-amber-600 dark:text-amber-400"></i>
+                            </div>
+                            <h4 class="font-medium">ThingSpeak</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Updated Professional Skills -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-8 text-cherryRed dark:text-offWhite relative inline-block">
+                    Compétences professionnelles
+                    <span class="absolute bottom-0 left-0 w-full h-1 bg-cherryRed dark:bg-offWhite"></span>
+                </h3>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 stagger-animation">
+                    <div class="skill-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition-all">
+                        <div class="flex items-center mb-3">
+                            <div class="w-12 h-12 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-4 transform transition-all hover:scale-110">
+                                <i class="fa-solid fa-tasks text-2xl text-cherryRed dark:text-offWhite"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-cherryRed dark:text-offWhite">Sens de l'organisation</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Capacité à planifier et structurer les tâches pour une efficacité optimale.</p>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition-all">
+                        <div class="flex items-center mb-3">
+                            <div class="w-12 h-12 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-4 transform transition-all hover:scale-110">
+                                <i class="fa-solid fa-sync-alt text-2xl text-cherryRed dark:text-offWhite"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-cherryRed dark:text-offWhite">Adaptabilité</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Flexibilité face aux changements et aux nouveaux environnements.</p>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition-all">
+                        <div class="flex items-center mb-3">
+                            <div class="w-12 h-12 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-4 transform transition-all hover:scale-110">
+                                <i class="fa-solid fa-book-reader text-2xl text-cherryRed dark:text-offWhite"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-cherryRed dark:text-offWhite">Autodidacte</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Capacité à apprendre et à maîtriser de nouveaux sujets par soi-même.</p>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition-all">
+                        <div class="flex items-center mb-3">
+                            <div class="w-12 h-12 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-4 transform transition-all hover:scale-110">
+                                <i class="fa-solid fa-clipboard-check text-2xl text-cherryRed dark:text-offWhite"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-cherryRed dark:text-offWhite">Responsabilité</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Fiabilité dans l'accomplissement des tâches et la prise de décisions.</p>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition-all">
+                        <div class="flex items-center mb-3">
+                            <div class="w-12 h-12 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-4 transform transition-all hover:scale-110">
+                                <i class="fa-solid fa-users text-2xl text-cherryRed dark:text-offWhite"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-cherryRed dark:text-offWhite">Esprit d'équipe</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Collaboration efficace avec les autres pour atteindre des objectifs communs.</p>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition-all">
+                        <div class="flex items-center mb-3">
+                            <div class="w-12 h-12 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-4 transform transition-all hover:scale-110">
+                                <i class="fa-solid fa-comments text-2xl text-cherryRed dark:text-offWhite"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-cherryRed dark:text-offWhite">Communication efficace</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Capacité à transmettre clairement des idées et à écouter activement.</p>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition-all">
+                        <div class="flex items-center mb-3">
+                            <div class="w-12 h-12 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-4 transform transition-all hover:scale-110">
+                                <i class="fa-solid fa-lightbulb text-2xl text-cherryRed dark:text-offWhite"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-cherryRed dark:text-offWhite">Créativité</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Aptitude à générer de nouvelles idées et solutions innovantes.</p>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition-all">
+                        <div class="flex items-center mb-3">
+                            <div class="w-12 h-12 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-4 transform transition-all hover:scale-110">
+                                <i class="fa-solid fa-clock text-2xl text-cherryRed dark:text-offWhite"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-cherryRed dark:text-offWhite">Gestion du temps</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Organisation efficace des priorités et respect des délais.</p>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition-all">
+                        <div class="flex items-center mb-3">
+                            <div class="w-12 h-12 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-4 transform transition-all hover:scale-110">
+                                <i class="fa-solid fa-crown text-2xl text-cherryRed dark:text-offWhite"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-cherryRed dark:text-offWhite">Leadership</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Capacité à guider et motiver une équipe vers des objectifs communs.</p>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition-all">
+                        <div class="flex items-center mb-3">
+                            <div class="w-12 h-12 bg-cherryRed/20 dark:bg-cherryRed/30 rounded-full flex items-center justify-center mr-4 transform transition-all hover:scale-110">
+                                <i class="fa-solid fa-project-diagram text-2xl text-cherryRed dark:text-offWhite"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-cherryRed dark:text-offWhite">Gestion de projet</h4>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Planification, exécution et suivi de projets complexes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logiciels & Technologies -->
+            <div>
+                <h3 class="text-2xl font-bold mb-8 text-success dark:text-info text-center relative inline-block">
+                    Logiciels & Technologies
+                    <span class="absolute bottom-0 left-0 w-full h-1 bg-success dark:bg-info"></span>
+                </h3>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 stagger-animation">
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-solid fa-database text-2xl text-success dark:text-info"></i>
+                        </div>
+                        <h4 class="font-medium">MySQL</h4>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-solid fa-database text-2xl text-success dark:text-info"></i>
+                        </div>
+                        <h4 class="font-medium">InfluxDB</h4>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-solid fa-sitemap text-2xl text-success dark:text-info"></i>
+                        </div>
+                        <h4 class="font-medium">Node-RED</h4>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-solid fa-chart-line text-2xl text-success dark:text-info"></i>
+                        </div>
+                        <h4 class="font-medium">Grafana</h4>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-solid fa-robot text-2xl text-success dark:text-info"></i>
+                        </div>
+                        <h4 class="font-medium">Robotique</h4>
+                    </div>
+                    
+                    <div class="skill-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow text-center">
+                        <div class="w-14 h-14 mx-auto bg-success/10 dark:bg-success/20 rounded-full flex items-center justify-center mb-3 transform transition-all hover:scale-110 hover:rotate-12">
+                            <i class="fa-solid fa-code-branch text-2xl text-success dark:text-info"></i>
+                        </div>
+                        <h4 class="font-medium">Git</h4>
                     </div>
                 </div>
             </div>
